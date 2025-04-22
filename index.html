@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Creation Process</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,8 +99,7 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-white shadow-md py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+    <header class="bg-white shadow-md py-6"> <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="logo">
                 <img src="https://via.placeholder.com/150x40?text=Growithai+Logo" alt="Growithai Logo" class="">
             </div>
@@ -113,9 +112,9 @@
                     <li><a href="#contact" class="text-lg text-yellow-600 hover:text-yellow-800 transition duration-300">Contact</a></li>
                 </ul>
             </nav>
-             <button id="hamburger-btn" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+            <button id="hamburger-btn" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5<pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>M3.75 12h16.5m-16.5 5.25h16.5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                 </svg>
             </button>
         </div>
@@ -276,19 +275,23 @@
         const mobileMenuLinks = mobileMenu.querySelectorAll("a");
         const navLinks = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('section');
+
         function toggleMobileMenu() {
             mobileMenu.classList.toggle("hidden");
         }
+
         hamburgerBtn.addEventListener("click", toggleMobileMenu);
         closeMenuBtn.addEventListener("click", toggleMobileMenu);
         mobileMenuLinks.forEach(link => {
             link.addEventListener("click", toggleMobileMenu);
         });
+
         document.addEventListener('click', (event) => {
             if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
                 toggleMobileMenu();
             }
         });
+
         function updateActiveNavLink() {
             let currentSectionId = '';
             sections.forEach(section => {
@@ -305,7 +308,9 @@
                 }
             });
         }
+
         window.addEventListener('scroll', updateActiveNavLink);
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
