@@ -105,6 +105,19 @@
     transition: opacity 0.3s ease;
     filter: grayscale(20%);
     /* Add other styling properties as needed */
+    }
+    .client-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+#clients .grid {
+  /* grid-template-columns: repeat(2, 1fr);
+    gap: 20px; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
 }
     </style>
 </head>
