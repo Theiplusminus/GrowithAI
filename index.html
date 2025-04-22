@@ -99,11 +99,12 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <header class="bg-white shadow-md py-6"> <div class="container mx-auto px-4 flex justify-between items-center">
+    <header class="bg-white shadow-md py-6">
+        <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="logo">
                 <img src="https://via.placeholder.com/150x40?text=Growithai+Logo" alt="Growithai Logo" class="">
             </div>
-            <nav class="hidden md:block">
+            <nav class="hidden md:block nav-links">
                 <ul class="flex space-x-6">
                     <li><a href="#home" class="text-lg text-blue-600 hover:text-blue-800 transition duration-300">Home</a></li>
                     <li><a href="#services" class="text-lg text-yellow-600 hover:text-yellow-800 transition duration-300">Services</a></li>
@@ -273,7 +274,7 @@
         const mobileMenu = document.getElementById("mobile-menu");
         const closeMenuBtn = document.getElementById("close-menu-btn");
         const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-        const navLinks = document.querySelectorAll('.nav-links a');
+        const navLinks = document.querySelectorAll('.nav-links a');  // Corrected selector
         const sections = document.querySelectorAll('section');
 
         function toggleMobileMenu() {
