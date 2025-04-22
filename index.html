@@ -27,7 +27,7 @@
             color: var(--red);
         }
         .bg-zoho-light-red{
-            background-color:  #FFFFFF; /* Changed to White */
+            background-color:  #FFFFFF;
         }
         .btn-zoho {
             background-color: #FFFFFF;
@@ -92,12 +92,12 @@
         }
         .divider {
             height: 1px;
-            background-color: #D1D5DB; /* Tailwind's gray-300 */
+            background-color: #D1D5DB;
             width: 100%;
             margin: 1.5rem 0;
         }
         .logo-image {
-            max-width: 120px; /* Or any other suitable value */
+            max-width: 80px;
             height: auto;
         }
     </style>
@@ -106,7 +106,7 @@
     <header class="bg-white shadow-md py-6">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="logo">
-                <img src="logotrans.png" alt="Growithai Logo" class="logo-image">
+                <img src="logo.png" alt="Growithai Logo" class="logo-image">
             </div>
             <nav class="hidden md:block nav-links">
                 <ul class="flex space-x-6">
@@ -278,7 +278,7 @@
         const mobileMenu = document.getElementById("mobile-menu");
         const closeMenuBtn = document.getElementById("close-menu-btn");
         const mobileMenuLinks = mobileMenu.querySelectorAll("a");
-        const navLinks = document.querySelectorAll('.nav-links a');  // Corrected selector
+        const navLinks = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('section');
 
         function toggleMobileMenu() {
