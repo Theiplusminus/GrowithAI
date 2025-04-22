@@ -9,9 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10; /* Ensure header stays above other content */
+        background-color: white; /* Keep the background color */
+        }
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #ffffff;
+            padding-top: 88px;
         }
         .section-title {
             font-size: 2.25rem;
@@ -145,6 +154,7 @@
         }
         /* Mobile Menu Enhancements */
         #mobile-menu {
+            top: 0;
             transition: opacity 0.3s ease-in-out;
             opacity: 0;
             pointer-events: none;
@@ -200,7 +210,7 @@
     <header class="bg-white shadow-md py-6">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="logo">
-                <img src="/api/placeholder/80/40" alt="Growithai Logo" class="logo-image">
+                <img src="logo.png" alt="Growithai Logo" class="logo-image">
             </div>
             <nav class="hidden md:block nav-links">
                 <ul class="flex space-x-6">
@@ -311,10 +321,10 @@
             <div class="container mx-auto px-4">
                 <h2 class="section-title text-green-500">Our Clients Across the Globe</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-6 justify-items-center">
-                    <img src="/api/placeholder/120/60" alt="UNICEF" class="client-logo">
-                    <img src="/api/placeholder/120/60" alt="Dominos" class="client-logo">
-                    <img src="/api/placeholder/120/60" alt="Vedantu" class="client-logo">
-                    <img src="/api/placeholder/120/60" alt="Myntra" class="client-logo">
+                    <img src="unicef-3.webp" alt="UNICEF" class="client-logo">
+                    <img src="dominos-pizza-logo.webp" alt="Dominos" class="client-logo">
+                    <img src="Vedantu-Logo-Vector.webp" alt="Vedantu" class="client-logo">
+                    <img src="myntra-1.webp" alt="Myntra" class="client-logo">
                 </div>
             </div>
         </section>
@@ -398,6 +408,15 @@
         const mobileMenuLinks = mobileMenu.querySelectorAll("a");
         const navLinks = document.querySelectorAll('.nav-links a');
         const sections = document.querySelectorAll('section');
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+            });
 
         // Toggle mobile menu function
         function toggleMobileMenu() {
@@ -448,9 +467,11 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
-                    currentSectionId = section.getAttribute('id');
-                }
+                const headerHeight = document.querySelector('header').offsetHeight;
+                if (window.scrollY >= sectionTop - headerHeight - 20 && 
+              window.scrollY < sectionTop + sectionHeight - headerHeight - 20) {
+               currentSectionId = section.getAttribute('id');
+              }
             });
             
             // Update desktop nav links
@@ -474,18 +495,44 @@
 
         // Smooth scrolling for all desktop anchor links
         document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').slice(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href').slice(1);
+    const targetSection = document.getElementById(targetId);
+    const headerHeight = document.querySelector('header').offsetHeight;
+    
+    if (targetSection) {
+      const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Do the same for mobile menu links
+mobileMenuLinks.forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href").slice(1);
+    const targetSection = document.getElementById(targetId);
+    const headerHeight = document.querySelector('header').offsetHeight;
+    
+    if (targetSection) {
+      mobileMenu.classList.remove("active");
+      hamburgerBtn.setAttribute("aria-expanded", "false");
+      
+      setTimeout(() => {
+        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
         });
+      }, 300);
+    }
+  });
+});
         
         // Handle partner link clicks
         document.querySelectorAll('.partner-link').forEach(link => {
