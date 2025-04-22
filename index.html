@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-width, initial-scale=1.0">
+    <title>Chatbot Creation Process</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lato:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffffff;
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+        .bg-zoho-red {
+            background-color: #e64a43;
+        }
+        .text-zoho-red {
+            color: var(--red);
+        }
+        .bg-zoho-light-red{
+            background-color:  #FFFFFF; /* Changed to White */
+        }
+        .btn-zoho {
+            background-color: #FFFFFF;
+            color: #000000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+        }
+        .btn-zoho:hover {
+            background-color: #FFFF00;
+            color: #000000;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .process-step span {
+            margin-bottom: 1rem;
+        }
+        .arrow-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .arrow-line {
+            height: 20px;
+            width: 2px;
+            background-color: #4285f4;
+        }
+        .arrow-head {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 10px solid #4285f4;
+        }
+
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+        .feature-box {
+            background-color: white;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .divider {
+            height: 1px;
+            background-color: #D1D5DB; /* Tailwind's gray-300 */
+            width: 100%;
+            margin: 1.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="logo">
+                <img src="https://via.placeholder.com/150x40?text=Growithai+Logo" alt="Growithai Logo" class="">
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="text-lg text-blue-600 hover:text-blue-800 transition duration-300">Home</a></li>
+                    <li><a href="#services" class="text-lg text-yellow-600 hover:text-yellow-800 transition duration-300">Services</a></li>
+                    <li><a href="#clients" class="text-lg text-green-600 hover:text-green-800 transition duration-300">Clients</a></li>
+                    <li><a href="#process" class="text-lg text-red-600 hover:text-red-800 transition duration-300">Process</a></li>
+                    <li><a href="#contact" class="text-lg text-yellow-600 hover:text-yellow-800 transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+             <button id="hamburger-btn" class="md:hidden text-gray-700 focus:outline-none" aria-label="Toggle Navigation">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5<pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad><pad>M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <div id="mobile-menu" class="hidden fixed top-0 left-0 w-full h-full bg-gray-900/90 z-20">
+        <div class="bg-gray-800 w-80 h-full absolute right-0 p-6">
+            <div class="flex justify-end mb-4">
+                <button id="close-menu-btn" class="text-white focus:outline-none" aria-label="Close Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="block">
+                <ul class="space-y-4">
+                    <li><a href="#home" class="block text-lg text-gray-200 hover:text-white transition duration-300">Home</a></li>
+                    <li><a href="#services" class="block text-lg text-gray-200 hover:text-white transition duration-300">Services</a></li>
+                    <li><a href="#clients" class="block text-lg text-gray-200 hover:text-white transition duration-300">Clients</a></li>
+                    <li><a href="#process" class="block text-lg text-gray-200 hover:text-white transition duration-300">Process</a></li>
+                    <li><a href="#contact" class="block text-lg text-gray-200 hover:text-white transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <main>
+        <section id="home" class="bg-zoho-light-red py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h1 class="text-4xl md:text-5xl font-semibold text-blue-500 mb-4">Welcome to Growithai</h1>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">Your Partner in AI-Powered Solutions</p>
+                <a href="#services" class="btn-zoho">Explore Our Services</a>
+            </div>
+        </section>
+        <div style="height: 1px; background-color: #34a853; width: 100%; margin: 1.5rem 0;"></div>
+        <section id="services" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-yellow-400">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="feature-box">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                                AI Chatbot Development
+                            </h3>
+                            <div class="border-b-2 border-blue-500 my-2 w-1/4"></div>
+                            <p class="text-gray-700 mb-4">We build intelligent chatbots using platforms like ManyChat, Aisensy, Zoho Sales IQ, Chatbase and Gallabox to automate customer interactions and streamline your business processes.  We handle the entire setup process, so you don't have to worry about any technical details. <strong>Focus on your business, while we handle the tech.</strong></p>
+                        </div>
+                    </div>
+                    <div class="feature-box">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                                AI Consulting
+                            </h3>
+                            <div class="border-b-2 border-blue-500 my-2 w-1/4"></div>
+                            <p class="text-gray-700 mb-4">We offer expert consulting services to help you leverage the power of artificial intelligence for your business.  Our consulting services include:</p>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li>AI Strategy</li>
+                                <li>AI Implementation</li>
+                                <li>AI Solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="height: 1px; background-color: #FF0000; width: 100%; margin: 1.5rem 0;"></div>
+        <section id="clients" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-green-500">Our Clients Across the Globe</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 justify-items-center">
+                    <img src="https://www.manychat.com/wp-content/uploads/2023/07/LVMH.png" alt="LVMH" class="client-logo">
+                    <img src="https://www.manychat.com/wp-content/uploads/2023/07/sephora-logo.png" alt="Sephora" class="client-logo">
+                    <img src="https://www.manychat.com/wp-content/uploads/2023/07/Dominos_Pizza_Logo.svg.png" alt="Dominos" class="client-logo">
+                    <img src="https://www.manychat.com/wp-content/uploads/2023/07/activision-logo.png" alt="Activision" class="client-logo">
+                    <img src="https://www.wati.io/wp-content/uploads/2023/02/WWF_Logo.svg" alt="WWF" class="client-logo">
+                    <img src="https://www.wati.io/wp-content/uploads/2023/02/Oxfam-Logo.svg" alt="Oxfam" class="client-logo">
+                    <img src="https://www.wati.io/wp-content/uploads/2023/02/UNICEF_logo.svg" alt="UNICEF" class="client-logo">
+                    <img src="https://www.aisensy.com/images/bobble-ai-logo.webp" alt="Bobble AI" class="client-logo">
+                    <img src="https://www.aisensy.com/images/vedantu-logo.webp" alt="Vedantu" class="client-logo">
+                    <img src="https://www.aisensy.com/images/myntra-logo.webp" alt="Myntra" class="client-logo">
+                </div>
+            </div>
+        </section>
+        <div style="height: 1px; background-color: #0000FF; width: 100%; margin: 1.5rem 0;"></div>
+        <section id="process" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="section-title text-red-500">Chatbot Creation Process</h2>
+                <div class="bg-white rounded-lg shadow-md p-6 text-gray-700">
+                    <div class="process-step">
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/user.svg" alt="Consultation" class="step-icon">
+                        <span>Initial Consultation</span>
+                        <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head"></div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/cpu.svg" alt="Platform Selection" class="step-icon">
+                        <span>Platform Selection</span>
+                         <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head">&#8963;</div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/list-checks.svg" alt="Requirement Gathering" class="step-icon">
+                        <span>Requirement Gathering</span>
+                        <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head"></div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/layout-template.svg" alt="Chatbot Design" class="step-icon">
+                        <span>Chatbot Design</span>
+                        <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head"></div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/terminal-square.svg" alt="Development & Testing" class="step-icon">
+                        <span>Development & Testing</span>
+                        <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head"></div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/rocket.svg" alt="Deployment & Training" class="step-icon">
+                        <span>Deployment & Training</span>
+                        <div class="arrow-icon">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-head"></div>
+                        </div>
+                        <img src="https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/message-square-plus.svg" alt="Ongoing Support" class="step-icon">
+                        <span>Ongoing Support</span>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Requirements:</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Facebook Page or Facebook Business Account</li>
+                            <li>GST Number (for business integration)</li>
+                            <li>Clear understanding of your customer journey</li>
+                            <li>Content for chatbot conversations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div style="height: 1px; background-color: #FFFF00; width: 100%; margin: 1.5rem 0;"></div>
+        <section id="contact" class="bg-zoho-light-red py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="section-title text-yellow-400">Contact Us</h2>
+                <p class="text-lg text-gray-700 mb-8">Get in touch to discuss your AI needs.</p>
+                <p class="text-lg text-gray-700 mb-4">Email: info@growithai.in</p>
+                <p class="text-lg text-gray-700">Phone: +91 [Your Phone Number]</p>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Growithai. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeMenuBtn = document.getElementById("close-menu-btn");
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle("hidden");
+        }
+        hamburgerBtn.addEventListener("click", toggleMobileMenu);
+        closeMenuBtn.addEventListener("click", toggleMobileMenu);
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener("click", toggleMobileMenu);
+        });
+        document.addEventListener('click', (event) => {
+            if (!mobileMenu.classList.contains('hidden') && !mobileMenu.contains(event.target) && event.target !== hamburgerBtn) {
+                toggleMobileMenu();
+            }
+        });
+        function updateActiveNavLink() {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 100 && window.scrollY < sectionTop + sectionHeight - 100) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSectionId) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveNavLink);
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
